@@ -1,8 +1,12 @@
-from models import Board, Stone, Player
+from models import Board
+from view import StandardIO
 
 
 def main():
-    pass
+    view = StandardIO()
+    board = Board()
+
+    view.show_board(board)
 
 
 if __name__ == '__main__':
