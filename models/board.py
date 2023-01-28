@@ -17,7 +17,7 @@ class Board:
     def __str__(self) -> str:
         return "Board"
 
-    def __first_stone(self, coordinates: Coordinates) -> Stone:
+    def __first_stone(self, coordinates: Coordinates) -> Place:
         if coordinates == Coordinates(3, 3) or coordinates == Coordinates(4, 4):
             return Stone.WHITE
         if coordinates == Coordinates(3, 4) or coordinates == Coordinates(4, 3):
@@ -27,3 +27,11 @@ class Board:
     @property
     def values(self):
         return self.__board
+
+    def place(self, coordinates: Coordinates) -> Place:
+        return self.__board[coordinates.y.value][coordinates.x.value]
+
+    def put(self, coordinates: Coordinates, stone: Stone):
+        target_place = self.place(coordinates)
+        if target_place.is_empty:
+            target_place.set_stone(stone)

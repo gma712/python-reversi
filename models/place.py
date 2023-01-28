@@ -60,8 +60,8 @@ class Stone(Enum):
 
 
 class Place:
-    def __init__(self, cordinate: Coordinate, stone: Stone):
-        self.__cordinate = cordinate
+    def __init__(self, coordinates: Coordinates, stone: Stone):
+        self.__coordinates = coordinates
         self.__stone = stone
 
     @property
@@ -70,7 +70,11 @@ class Place:
 
     @property
     def x(self) -> Coordinate:
-        return self.__cordinate
+        return self.__coordinates.x
+
+    @property
+    def y(self) -> Coordinate:
+        return self.__coordinates.y
 
     def __repr__(self) -> str:
         return str(self.stone)
@@ -89,6 +93,9 @@ class Place:
     @property
     def is_empty(self) -> bool:
         return self.__stone is Stone.ENPTY
+
+    def set_stone(self, stone: Stone) -> None:
+        self.__stone = stone
 
     def flip(self) -> None:
         self.__stone = Stone.BLACK if self.is_white else Stone.WHITE
